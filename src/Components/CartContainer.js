@@ -6,6 +6,7 @@ import CartItemHorizontal from "./CartItemHorizontal";
 import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
 import EmptyCart from "../img/emptyCart.svg";
+import axios from "axios";
 
 const CartContainer = () => {
   const [{ cartShow, cartItems }, dispatch] = useStateValue();
@@ -28,12 +29,46 @@ const CartContainer = () => {
     localStorage.setItem("cartItems", JSON.stringify([]));
   };
 
+  const addToCart = async (e) => {
+    e.preventDefault();
+    try {
+      const cart = [];
+      for (let i in cartItems) {
+        // console.log(cartItems[i].name);
+        cart.push({
+          name: cartItems[i].name,
+          price: cartItems[i].price,
+          qty: cartItems[i].qty,
+        });
+      }
+      const em = JSON.parse(localStorage.getItem("userToken"));
+      // console.log(em.email);
+      const response = await fetch("http://localhost:5000/api/onlineCart", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: em.email,
+          cart,
+        }),
+      });
+
+      const json = await response.json();
+      // console.log(json);
+      alert("Order placed");
+
+      clearCart();
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
     let totalPrice = cartItems.reduce(function (accumulator, item) {
       return accumulator + item.qty * item.price;
     }, 0);
     setTot(totalPrice);
-    // console.log(tot);
   }, [tot, flag]);
 
   return (
@@ -94,6 +129,7 @@ const CartContainer = () => {
               whileTap={{ scale: 0.8 }}
               type="button"
               className="w-full p-2 rounded-full bg-gradient-to-tr from-orange-400 to-orange-600 text-gray-50 text-lg my-2 hover:shadow-lg transition-all duration-150 ease-out"
+              onClick={addToCart}
             >
               Check Out
             </motion.button>
@@ -102,7 +138,7 @@ const CartContainer = () => {
         </div>
       ) : (
         <div className="w-full h-full flex flex-col items-center justify-center gap-6">
-          <img src={EmptyCart} className="w-300" alt="" />
+          <img src={EmptyCart} className="w-300" alt="Cart" />
           <p className="text-xl text-textColor font-semibold">
             Add some items to your cart
           </p>

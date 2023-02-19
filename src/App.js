@@ -7,6 +7,7 @@ import {
 } from "./Components";
 import { Route, Routes } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import AdEditItem from "./Components/AdEditItem";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             {/* <Route path="/createItem" element={<CreateContainer />} /> */}
             <Route path="/admin" element={<AdminContainer />} />
             <Route path="/adminlogin" element={<LoginAdminSign1 />} />
+            <Route path="/updateitem" element={<AdEditItem />} />
           </Routes>
         </main>
       </div>

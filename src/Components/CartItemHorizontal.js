@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import img111 from "../img/c7.png";
+// import img111 from "../img/c7.png";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { actionType } from "../context/reducer";
 import { useStateValue } from "../context/StateProvider";
@@ -8,7 +8,7 @@ import { useStateValue } from "../context/StateProvider";
 const CartItemHorizontal = ({ item, setFlag, flag }) => {
   let items = [];
   const [{ cartItems }, dispatch] = useStateValue();
-  const [qty, setQty] = useState(1);
+  const [qty, setQty] = useState(item.qty);
 
   const cartDispatch = () => {
     localStorage.setItem("cartItems", JSON.stringify(items));
@@ -19,7 +19,7 @@ const CartItemHorizontal = ({ item, setFlag, flag }) => {
   };
 
   const updateQty = (action, id) => {
-    if (action == "add") {
+    if (action === "add") {
       setQty(qty + 1);
       cartItems.map((item) => {
         if (item._id === id) {
@@ -30,7 +30,7 @@ const CartItemHorizontal = ({ item, setFlag, flag }) => {
       cartDispatch();
     } else {
       // initial state value is one so you need to check if 1 then remove it
-      if (qty == 1) {
+      if (qty === 1) {
         items = cartItems.filter((item) => item._id !== id);
         setFlag(flag + 1);
         cartDispatch();
@@ -79,7 +79,7 @@ const CartItemHorizontal = ({ item, setFlag, flag }) => {
             <BiMinus className="text-gray-50" />
           </motion.div>
           <p className="w-5 h-5 rounded-sm bg-cartBg text-gray-50 flex items-center justify-center">
-            {qty}
+            {item.qty}
           </p>
           <motion.div
             whileTap={{ scale: 0.75 }}

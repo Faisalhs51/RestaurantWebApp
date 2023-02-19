@@ -16,10 +16,6 @@ const MItemCard = ({ menudata }) => {
     localStorage.setItem("cartItems", JSON.stringify(items));
   };
 
-  const add = () =>{
-    
-  }
-
   useEffect(() => {
     addtocart();
   }, [items]);

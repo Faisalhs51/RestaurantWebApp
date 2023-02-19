@@ -1,10 +1,10 @@
 import React, {useEffect} from "react";
-import MItemCard from "./MItemCard";
+import AdItemCard from "./AdItemCard";
 import { useState } from "react";
 import { MdFastfood } from "react-icons/md";
 import axios from "axios";
 
-const MenuSection = () => {
+const AdMenuSection = () => {
   const [menudata, setmenudata] = useState([]);
   const [menu, setmenu] = useState([]);
 
@@ -148,10 +148,10 @@ const MenuSection = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14">
-        <MItemCard menudata={menudata} />
+        <AdItemCard menudata={menudata} />
       </div>
     </>
   );
 };
 
-export default MenuSection;
+export default AdMenuSection;

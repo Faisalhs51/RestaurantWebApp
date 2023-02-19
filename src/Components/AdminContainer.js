@@ -1,5 +1,10 @@
 import React from "react";
-import { AdminAddMenuItem, AdminAddTSitem,TodaysSpecialSection,MenuSection } from "./";
+import {
+  AdminAddMenuItem,
+  AdminAddTSitem,
+  TodaysSpecialSection,
+} from "./";
+import AdMenuSection from "./AdMenuSection"
 
 const AdminContainer = () => {
   return (
@@ -11,7 +16,7 @@ const AdminContainer = () => {
         <AdminAddTSitem />
         <AdminAddMenuItem />
         <TodaysSpecialSection />
-        <MenuSection/>
+        <AdMenuSection />
       </div>
     </>
   );

@@ -1,48 +1,57 @@
 import React, { useEffect } from "react";
 import {
   MdFastfood,
-  MdCloudUpload,
   MdAvTimer,
   MdAttachMoney,
 } from "react-icons/md";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+const AdEditItem = () => {
+  let navigate = useNavigate();
 
-const AdminAddMenuItem = () => {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("breakfast");
   const [price, setPrice] = useState(0);
   const [est, setEst] = useState(0);
-  const [image, setImage] = useState("");
+  const [id, setId] = useState("");
 
-  const handleImage = (e) => {
-    setImage(e.target.files[0]);
-    // console.log(e.target.files);
-    // console.log(image.name);
-  };
+  useEffect(() => {
+    // console.log(document.URL);
+    let obj = JSON.parse(localStorage.getItem("editItem"));
+    setId(obj._id);
+    setName(obj.name);
+    setCategory(obj.category);
+    setEst(obj.est);
+    setPrice(obj.price);
+  }, []);
 
-  const saveIt = (e) => {
+  const saveIt = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("image", image);
-    formData.append("category", category);
-    formData.append("price", price);
-    formData.append("est", est);
-
-    // console.log(formData);
-    axios
-      .post("http://localhost:5000/api/items", formData)
+    let data = {
+      name: name,
+      category: category,
+      price: price,
+      est: est,
+    };
+    await axios({
+      method: "put",
+      url: `http://localhost:5000/api/items/${id}`,
+      data: data,
+    })
       .then((res) => {
-        alert("Item added successfully");
-        console.log(res);
+        alert("Item Updated successfully");
+        // console.log(res);
+        localStorage.removeItem("editItem");
+        navigate("/admin");
       })
       .catch((e) => {
         console.log(e);
       });
   };
+
   return (
-    <>
+    <div>
       <div className="w-full flex items-center justify-between mt-16">
         <p className="text-2xl font-semibold capitalize text-headingColor relative before:absolute before:rounded-lg before:w-32 before:h-1 before:-bottom-4 before:left-0 before:bg-gradient-to-tr from-orange-400 to-orange-600 transition-all ease-in-out duration-100 mb-20">
           Add Food Item in Menu Card
@@ -61,7 +70,7 @@ const AdminAddMenuItem = () => {
                 placeholder="Give Me a Title..."
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full h-full text-lg bg-transparent font-semibold outline-none border-none placeholder:text-gray-400 text-textColor"
+                className="w-full capitalize h-full text-lg bg-transparent font-semibold outline-none border-none placeholder:text-gray-400 text-textColor"
               />
             </div>
             {/* Closed Title Input Field */}
@@ -69,6 +78,7 @@ const AdminAddMenuItem = () => {
             <div className="w-full">
               <select
                 className="outline-none w-full text-base border-b-2 border-gray-200 p-2 rounded-md cursor-pointer"
+                value={category}
                 onChange={(e) => {
                   setCategory(e.target.value);
                 }}
@@ -113,39 +123,6 @@ const AdminAddMenuItem = () => {
               </select>
             </div>
             {/*Closed Select Category  */}
-            {/* Upload Image */}
-            <div className="group flex justify-center items-center flex-col border-2 border-dotted border-gray-300 w-full h-225 md:h-420 cursor-pointer rounded-lg">
-              <label className="w-full h-full flex flex-col items-center justify-center cursor-pointer">
-                <div className="w-full h-full flex flex-col items-center justify-center gap-2">
-                  {image.length === 0 && (
-                    <>
-                      <MdCloudUpload className="text-gray-500 text-8xl hover:text-gray-700" />
-                      <p className="text-gray-500 text-3xl hover:text-gray-700 text-center">
-                        Click Here to Upload
-                      </p>
-                    </>
-                  )}
-                  {image.length > 0 && (
-                    <>
-                      {/* <MdCloudUpload className="text-gray-500 text-8xl hover:text-gray-700" /> */}
-                      <p className="text-gray-500 text-3xl hover:text-gray-700 text-center">
-                        {/* Click Here to Upload */}
-                        {image.name}
-                      </p>
-                    </>
-                  )}
-                </div>
-                <input
-                  type="file"
-                  accept="image/*"
-                  name="uploadImage"
-                  className="w-0 h-0"
-                  required
-                  onChange={handleImage}
-                />
-              </label>
-            </div>
-            {/* Closed Upload Image */}
             {/* time+price flex */}
             <div className="w-full flex flex-col md:flex-row items-center gap-3">
               {/* Waiting Time */}
@@ -192,8 +169,8 @@ const AdminAddMenuItem = () => {
           </div>
         </div>
       </form>
-    </>
+    </div>
   );
 };
 
-export default AdminAddMenuItem;
+export default AdEditItem;
