@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   MdFastfood,
   MdCloudUpload,
@@ -11,8 +11,8 @@ import axios from "axios";
 const AdminAddMenuItem = () => {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("breakfast");
-  const [price, setPrice] = useState(0);
-  const [est, setEst] = useState(0);
+  const [price, setPrice] = useState();
+  const [est, setEst] = useState();
   const [image, setImage] = useState("");
 
   const handleImage = (e) => {
@@ -35,6 +35,7 @@ const AdminAddMenuItem = () => {
       .post("http://localhost:5000/api/items", formData)
       .then((res) => {
         alert("Item added successfully");
+        window.location.reload(true);
         console.log(res);
       })
       .catch((e) => {

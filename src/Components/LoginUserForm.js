@@ -20,7 +20,7 @@ const LoginUserForm = () => {
       localStorage.setItem("userToken", JSON.stringify(user));
       navigate("/user");
     }
-  }, [user]);
+  }, [user, navigate]);
 
   useEffect(() => {
     /* global google */

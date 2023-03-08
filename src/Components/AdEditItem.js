@@ -69,7 +69,7 @@ const AdEditItem = () => {
                 required
                 placeholder="Give Me a Title..."
                 value={name}
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => setName(e.target.value.toLowerCase())}
                 className="w-full capitalize h-full text-lg bg-transparent font-semibold outline-none border-none placeholder:text-gray-400 text-textColor"
               />
             </div>

@@ -13,7 +13,6 @@ const AdMenuSection = () => {
       .get("http://localhost:5000/api/items")
       .then((res) => {
         let obj = res.data;
-        // obj.qty = 0;
         for(let i of obj){
           i.qty = 1;
         }
@@ -70,7 +69,7 @@ const AdMenuSection = () => {
         </div>
               {/*  */}
               {/*  */}
-        <div className="w-full flex items-center justify-start lg:justify-center gap-8 py-6" onClick={() => filterItem("chicken")}>
+        <div className="w-full flex items-center justify-start lg:justify-center gap-8 py-6" onClick={() => filterItem("starter")}>
           <div className="group bg-card w-24 min-w-[94px] h-28 cursor-pointer rounded-lg drop-shadow-xl flex flex-col gap-3 items-center justify-center hover:bg-red-500 duration-150 transition-all ease-in-out ">
             <div className="w-10 h-10 rounded-full bg-red-500 group-hover:bg-card flex items-center justify-center">
               <MdFastfood className="text-card group-hover:text-textColor text-lg" />
@@ -86,7 +85,7 @@ const AdMenuSection = () => {
               {/*  */}
               
               {/*  */}
-        <div className="w-full flex items-center justify-start lg:justify-center gap-8 py-6" onClick={() => filterItem("lunch")}>
+        <div className="w-full flex items-center justify-start lg:justify-center gap-8 py-6" onClick={() => filterItem("mughlai")}>
           <div className="group bg-card w-24 min-w-[94px] h-28 cursor-pointer rounded-lg drop-shadow-xl flex flex-col gap-3 items-center justify-center hover:bg-red-500 duration-150 transition-all ease-in-out ">
             <div className="w-10 h-10 rounded-full bg-red-500 group-hover:bg-card flex items-center justify-center">
               <MdFastfood className="text-card group-hover:text-textColor text-lg" />

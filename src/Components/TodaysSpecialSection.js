@@ -1,10 +1,23 @@
-import React from "react";
-import TspecialApi from "./TSapi";
-import TSItemCard from "./TSItemCard";
+import React, { useEffect } from "react";
 import { useState } from "react";
+import axios from "axios";
+import MItemCard from "./MItemCard";
 
-const TodaysSpecialSection = () => {
-  const [tsdata, settsdata] = useState(TspecialApi);
+const TodaysSpecialSection = ({isAdmin}) => {
+  const [tsdata, setTsdata] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/api/specialItems")
+      .then((res) => {
+        let obj = res.data;
+        for (let i of obj) {
+          i.qty = 1;
+        }
+        setTsdata(obj);
+      })
+      .catch((err) => console.log(err, "it has an error"));
+  }, []);
+
   return (
     <>
       <section id="Menu" className="w-full">
@@ -16,7 +29,7 @@ const TodaysSpecialSection = () => {
       </section>
       {/*  */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14">
-        <TSItemCard tsdata={tsdata} />
+        <MItemCard menudata={tsdata} isAdmin={isAdmin}/>
       </div>
     </>
   );

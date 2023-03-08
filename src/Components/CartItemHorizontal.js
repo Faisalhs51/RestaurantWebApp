@@ -21,7 +21,7 @@ const CartItemHorizontal = ({ item, setFlag, flag }) => {
   const updateQty = (action, id) => {
     if (action === "add") {
       setQty(qty + 1);
-      cartItems.map((item) => {
+      cartItems.forEach((item) => {
         if (item._id === id) {
           item.qty += 1;
           setFlag(flag + 1);
@@ -36,7 +36,7 @@ const CartItemHorizontal = ({ item, setFlag, flag }) => {
         cartDispatch();
       } else {
         setQty(qty - 1);
-        cartItems.map((item) => {
+        cartItems.forEach((item) => {
           if (item._id === id) {
             item.qty -= 1;
             setFlag(flag + 1);

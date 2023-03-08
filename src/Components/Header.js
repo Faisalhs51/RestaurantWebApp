@@ -4,20 +4,20 @@ import Avatar from "../img/avatar.png";
 import { MdShoppingBasket, MdLogout } from "react-icons/md";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
 
 const Header = () => {
-  const [{ cartShow, cartItems }, dispatch] = useStateValue();
+  const [{ cartShow, cartItems, user }, dispatch] = useStateValue();
   const [isMenu, setIsMenu] = useState(false);
 
-  const [user, setUser] = useState();
+  // const [user, setUser] = useState();
 
-  useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem("userToken")));
-    // console.log(cartItems);
-  }, []);
+  // useEffect(() => {
+  //   setUser(JSON.parse(localStorage.getItem("userToken")));
+  //   // console.log(cartItems);
+  // }, []);
 
   const login = async () => {
     setIsMenu(!isMenu);
@@ -60,9 +60,9 @@ const Header = () => {
             <li className="text-base text-headingColor hover:text-textColor duration-100 transition-all ease-in-out cursor-pointer">
               About Us
             </li>
-            <li className="text-base text-headingColor hover:text-textColor duration-100 transition-all ease-in-out cursor-pointer">
+            {/* <li className="text-base text-headingColor hover:text-textColor duration-100 transition-all ease-in-out cursor-pointer">
               Service
-            </li>
+            </li> */}
           </motion.ul>
           <div
             className="relative flex items-center justify-center"

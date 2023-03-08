@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import MItemCard from "./MItemCard";
 import { useState } from "react";
 import { MdFastfood } from "react-icons/md";
@@ -14,7 +14,7 @@ const MenuSection = () => {
       .then((res) => {
         let obj = res.data;
         // obj.qty = 0;
-        for(let i of obj){
+        for (let i of obj) {
           i.qty = 1;
         }
         setmenu(obj);
@@ -38,113 +38,114 @@ const MenuSection = () => {
           </p>
         </div>
       </section>
-      <div id="FilterHeadings" className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-14">
+      <div
+        id="FilterHeadings"
+        className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-14"
+      >
         {/*  */}
-        <div className="w-full flex items-center justify-start lg:justify-center gap-8 py-6" onClick={() => setmenudata(menu)}>
+        <div
+          className="w-full flex items-center justify-start lg:justify-center gap-8 py-6"
+          onClick={() => setmenudata(menu)}
+        >
           <div className="group bg-card w-24 min-w-[94px] h-28 cursor-pointer rounded-lg drop-shadow-xl flex flex-col gap-3 items-center justify-center hover:bg-red-500 duration-150 transition-all ease-in-out ">
             <div className="w-10 h-10 rounded-full bg-red-500 group-hover:bg-card flex items-center justify-center">
               <MdFastfood className="text-card group-hover:text-textColor text-lg" />
             </div>
-            <p
-              className="text-sm text-textColor group-hover:text-white"
-              
-            >
-              All
-            </p>
+            <p className="text-sm text-textColor group-hover:text-white">All</p>
           </div>
         </div>
-              {/*  */}
-              {/*  */}
-        <div className="w-full flex items-center justify-start lg:justify-center gap-8 py-6" onClick={() => filterItem("breakfast")}>
+        {/*  */}
+        {/*  */}
+        <div
+          className="w-full flex items-center justify-start lg:justify-center gap-8 py-6"
+          onClick={() => filterItem("breakfast")}
+        >
           <div className="group bg-card w-24 min-w-[94px] h-28 cursor-pointer rounded-lg drop-shadow-xl flex flex-col gap-3 items-center justify-center hover:bg-red-500 duration-150 transition-all ease-in-out ">
             <div className="w-10 h-10 rounded-full bg-red-500 group-hover:bg-card flex items-center justify-center">
               <MdFastfood className="text-card group-hover:text-textColor text-lg" />
             </div>
-            <p
-              className="text-sm text-textColor group-hover:text-white"
-              
-            >
+            <p className="text-sm text-textColor group-hover:text-white">
               Breakfast
             </p>
           </div>
         </div>
-              {/*  */}
-              {/*  */}
-        <div className="w-full flex items-center justify-start lg:justify-center gap-8 py-6" onClick={() => filterItem("chicken")}>
+        {/*  */}
+        {/*  */}
+        <div
+          className="w-full flex items-center justify-start lg:justify-center gap-8 py-6"
+          onClick={() => filterItem("starter")}
+        >
           <div className="group bg-card w-24 min-w-[94px] h-28 cursor-pointer rounded-lg drop-shadow-xl flex flex-col gap-3 items-center justify-center hover:bg-red-500 duration-150 transition-all ease-in-out ">
             <div className="w-10 h-10 rounded-full bg-red-500 group-hover:bg-card flex items-center justify-center">
               <MdFastfood className="text-card group-hover:text-textColor text-lg" />
             </div>
-            <p
-              className="text-sm text-textColor group-hover:text-white"
-              
-            >
+            <p className="text-sm text-textColor group-hover:text-white">
               Starter
             </p>
           </div>
         </div>
-              {/*  */}
-              
-              {/*  */}
-        <div className="w-full flex items-center justify-start lg:justify-center gap-8 py-6" onClick={() => filterItem("lunch")}>
+        {/*  */}
+
+        {/*  */}
+        <div
+          className="w-full flex items-center justify-start lg:justify-center gap-8 py-6"
+          onClick={() => filterItem("mughlai")}
+        >
           <div className="group bg-card w-24 min-w-[94px] h-28 cursor-pointer rounded-lg drop-shadow-xl flex flex-col gap-3 items-center justify-center hover:bg-red-500 duration-150 transition-all ease-in-out ">
             <div className="w-10 h-10 rounded-full bg-red-500 group-hover:bg-card flex items-center justify-center">
               <MdFastfood className="text-card group-hover:text-textColor text-lg" />
             </div>
-            <p
-              className="text-sm text-textColor group-hover:text-white"
-              
-            >
+            <p className="text-sm text-textColor group-hover:text-white">
               Mughlai
             </p>
           </div>
         </div>
-              {/*  */}
-              {/*  */}
-        <div className="w-full flex items-center justify-start lg:justify-center gap-4 md:gap-8 py-6" onClick={() => filterItem("chinese")}>
+        {/*  */}
+        {/*  */}
+        <div
+          className="w-full flex items-center justify-start lg:justify-center gap-4 md:gap-8 py-6"
+          onClick={() => filterItem("chinese")}
+        >
           <div className="group bg-card w-24 min-w-[94px] h-28 cursor-pointer rounded-lg drop-shadow-xl flex flex-col gap-3 items-center justify-center hover:bg-red-500 duration-150 transition-all ease-in-out ">
             <div className="w-10 h-10 rounded-full bg-red-500 group-hover:bg-card flex items-center justify-center">
               <MdFastfood className="text-card group-hover:text-textColor text-lg" />
             </div>
-            <p
-              className="text-sm text-textColor group-hover:text-white"
-              
-            >
+            <p className="text-sm text-textColor group-hover:text-white">
               Chinese
             </p>
           </div>
         </div>
-              {/*  */}
-              {/*  */}
-        <div className="w-full flex items-center justify-start lg:justify-center gap-8 py-6" onClick={() => filterItem("dessert")}>
+        {/*  */}
+        {/*  */}
+        <div
+          className="w-full flex items-center justify-start lg:justify-center gap-8 py-6"
+          onClick={() => filterItem("dessert")}
+        >
           <div className="group bg-card w-24 min-w-[94px] h-28 cursor-pointer rounded-lg drop-shadow-xl flex flex-col gap-3 items-center justify-center hover:bg-red-500 duration-150 transition-all ease-in-out ">
             <div className="w-10 h-10 rounded-full bg-red-500 group-hover:bg-card flex items-center justify-center">
               <MdFastfood className="text-card group-hover:text-textColor text-lg" />
             </div>
-            <p
-              className="text-sm text-textColor group-hover:text-white"
-              
-            >
+            <p className="text-sm text-textColor group-hover:text-white">
               Dessert
             </p>
           </div>
         </div>
-              {/*  */}
-              {/*  */}
-        <div className="w-full flex items-center justify-start lg:justify-center gap-8 py-6" onClick={() => filterItem("drinks")}>
+        {/*  */}
+        {/*  */}
+        <div
+          className="w-full flex items-center justify-start lg:justify-center gap-8 py-6"
+          onClick={() => filterItem("drinks")}
+        >
           <div className="group bg-card w-24 min-w-[94px] h-28 cursor-pointer rounded-lg drop-shadow-xl flex flex-col gap-3 items-center justify-center hover:bg-red-500 duration-150 transition-all ease-in-out ">
             <div className="w-10 h-10 rounded-full bg-red-500 group-hover:bg-card flex items-center justify-center">
               <MdFastfood className="text-card group-hover:text-textColor text-lg" />
             </div>
-            <p
-              className="text-sm text-textColor group-hover:text-white"
-              
-            >
+            <p className="text-sm text-textColor group-hover:text-white">
               Drinks
             </p>
           </div>
         </div>
-              {/*  */}
+        {/*  */}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14">

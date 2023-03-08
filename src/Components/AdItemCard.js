@@ -1,12 +1,24 @@
 import React from "react";
-import { MdDelete, MdEdit } from "react-icons/md";
+import { MdDelete, MdEdit, MdStar } from "react-icons/md";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-
 const AdItemCard = ({ menudata }) => {
   let navigate = useNavigate();
+
+  const StarItem = async (currElm) => {
+    await axios
+      .post(`http://localhost:5000/api/specialItems/${currElm._id}`)
+      .then((res) => {
+        alert("Item added to Special items list Successfully!!");
+        window.location.reload(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const EditItem = (currElm) => {
     localStorage.setItem("editItem", JSON.stringify(currElm));
     navigate("/updateitem");
@@ -52,28 +64,24 @@ const AdItemCard = ({ menudata }) => {
                 <motion.div
                   whileTap={{ scale: 0.75 }}
                   className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center cursor-pointer hover:shadow-lg"
-                  onClick={
-                    () => {
-                      EditItem(currElm);
-                    }
-                    // console.log(currElm._id);
-                    // axios
-                    //   .delete(`http://localhost:5000/api/items/${currElm._id}`)
-                    //   .then((res) => {
-                    //     alert("Item deleted!!");
-                    //     window.location.reload(true);
-                    //     // console.log(res);
-                    //   })
-                    //   .catch((err) => {
-                    //     console.log(err);
-                    //   });
-                  }
+                  onClick={() => {
+                    EditItem(currElm);
+                  }}
                 >
                   <MdEdit className="text-white" />
                 </motion.div>
+                <motion.div
+                  whileTap={{ scale: 0.75 }}
+                  className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center cursor-pointer hover:shadow-lg"
+                  onClick={() => {
+                    StarItem(currElm);
+                  }}
+                >
+                  <MdStar className="text-white" />
+                </motion.div>
               </div>
               <div className="w-full flex flex-col items-end justify-end">
-                <p className="text-textColor font-semibold text-base md:text-lg">
+                <p className="text-textColor capitalize font-semibold text-base md:text-lg">
                   {currElm.name}
                 </p>
                 <p className="mt-1 text-sm text-gray-500">

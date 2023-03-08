@@ -6,12 +6,20 @@ import CartItemHorizontal from "./CartItemHorizontal";
 import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
 import EmptyCart from "../img/emptyCart.svg";
-import axios from "axios";
 
 const CartContainer = () => {
-  const [{ cartShow, cartItems }, dispatch] = useStateValue();
+  const [{ cartShow, cartItems, checkoutShow }, dispatch] = useStateValue();
+  // const [showModal, setShowModal] = useState(false);
   const [flag, setFlag] = useState(1);
   const [tot, setTot] = useState(0);
+
+  const showModal = () => {
+    dispatch({
+      type: actionType.SET_CHECKOUTSHOW,
+      checkoutShow: !checkoutShow,
+    });
+    showCart();
+  };
 
   const showCart = () => {
     dispatch({
@@ -54,7 +62,7 @@ const CartContainer = () => {
         }),
       });
 
-      const json = await response.json();
+      await response.json();
       // console.log(json);
       alert("Order placed");
 
@@ -69,7 +77,7 @@ const CartContainer = () => {
       return accumulator + item.qty * item.price;
     }, 0);
     setTot(totalPrice);
-  }, [tot, flag]);
+  }, [tot, flag, cartItems]);
 
   return (
     <div className="fixed top-0 right-0 w-full md:w-375 h-screen bg-white drop-shadow-md flex flex-col z-[101]">
@@ -131,7 +139,7 @@ const CartContainer = () => {
               className="w-full p-2 rounded-full bg-gradient-to-tr from-orange-400 to-orange-600 text-gray-50 text-lg my-2 hover:shadow-lg transition-all duration-150 ease-out"
               onClick={addToCart}
             >
-              Check Out
+              Order Now
             </motion.button>
           </div>
           {/* End Bottom Content */}
@@ -141,7 +149,24 @@ const CartContainer = () => {
           <img src={EmptyCart} className="w-300" alt="Cart" />
           <p className="text-xl text-textColor font-semibold">
             Add some items to your cart
+            <br />
           </p>
+          <span className="text-center text-xl text-orange-600 font-semibold">
+            OR
+          </span>
+          <button
+            className="bg-orange-600 text-white active:bg-orange-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            type="button"
+            onClick={
+              showModal
+              // setShowModal(false);
+              // <CheckoutReview showModal1={showModal}/>
+            }
+          >
+            Check Out
+          </button>
+          {/* {checkoutShow && <CheckoutReview showModal1={showModal} />} */}
+          {/* {checkoutShow && <CheckoutReview />} */}
         </div>
       )}
     </div>
