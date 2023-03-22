@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
+import axios from "axios";
 
 const LoginUserForm = () => {
   const [user, setUser] = useState({});
@@ -16,9 +17,19 @@ const LoginUserForm = () => {
   }
 
   useEffect(() => {
+    const createUser = async () => {
+      await axios
+        .post("http://localhost:5000/api/customer/createUser", {
+          email: user.email,
+          name: user.name,
+        })
+        .then(() => {
+          navigate("/user");
+        });
+    };
     if (user.email_verified) {
       localStorage.setItem("userToken", JSON.stringify(user));
-      navigate("/user");
+      createUser();
     }
   }, [user, navigate]);
 

@@ -5,6 +5,7 @@ export const actionType = {
   SET_CHECKOUTSHOW: "SET_CHECKOUTSHOW",
   SET_USER: "SET_USER",
   SET_STORE: "SET_STORE",
+  SET_DISCOUNT: "SET_DISCOUNT",
 };
 
 const reducer = (state, action) => {
@@ -40,10 +41,17 @@ const reducer = (state, action) => {
         ...state,
         user: action.user,
       };
+
     case actionType.SET_STORE:
       return {
         ...state,
         online: action.online,
+      };
+
+    case actionType.SET_DISCOUNT:
+      return {
+        ...state,
+        discount: action.discount,
       };
 
     default:

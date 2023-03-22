@@ -7,6 +7,8 @@ import { actionType } from "../context/reducer";
 const SKstorekeeperModule = () => {
   const [, dispatch] = useStateValue();
 
+  // setInterval
+
   useEffect(() => {
     const gather = async () => {
       await axios.get("http://localhost:5000/api/storekeeper").then((res) => {

@@ -9,5 +9,6 @@ export const initialState = {
   tableNo: 0,
   checkoutShow: false,
   user: userInfo,
-  online: []
+  online: [],
+  discount: false
 };

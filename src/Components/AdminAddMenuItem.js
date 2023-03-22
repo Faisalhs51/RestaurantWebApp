@@ -16,8 +16,13 @@ const AdminAddMenuItem = () => {
   const [image, setImage] = useState("");
 
   const handleImage = (e) => {
-    setImage(e.target.files[0]);
     // console.log(e.target.files);
+    let size = e.target.files[0].size / 1024;
+    if (size > 31) {
+      alert("Please upload Image less than 30kb");
+    } else {
+      setImage(e.target.files[0]);
+    }
     // console.log(image.name);
   };
 

@@ -7,11 +7,12 @@ import {
 } from "@stripe/react-stripe-js";
 import { useStateValue } from "../context/StateProvider";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
-  const [{ user, tableno }] = useStateValue();
+  const [{ user, discount, tableNo }] = useStateValue();
   let navigate = useNavigate();
 
   const [email, setEmail] = useState(user.email);
@@ -19,10 +20,25 @@ export default function CheckoutForm() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    const successCallback = async () => {
+      let body = {
+        email: user.email,
+        coin: 0,
+      };
+      if (discount) {
+        body.coin = user.coins;
+      }
+      await axios
+        .post(`http://localhost:5000/api/bill//billing/sendmail`, body)
+        .then(async () => {
+          await axios.delete(
+            `http://localhost:5000/api/onlineCart/${user.email}`
+          );
+        });
+    };
     if (!stripe) {
       return;
     }
-
     const clientSecret = new URLSearchParams(window.location.search).get(
       "payment_intent_client_secret"
     );
@@ -35,10 +51,11 @@ export default function CheckoutForm() {
       switch (paymentIntent.status) {
         case "succeeded":
           setMessage("Payment succeeded!");
-          alert("Payment done successfully!!!");
+          successCallback();
+          alert(`Payment done successfully!!!`);
           localStorage.clear();
           //   localStorage.setItem("tableno", tableno);
-          let redirect = `/${tableno}`;
+          let redirect = `/${tableNo}`;
           navigate(redirect);
           break;
         case "processing":
@@ -52,7 +69,7 @@ export default function CheckoutForm() {
           break;
       }
     });
-  }, [stripe, navigate, tableno]);
+  }, [stripe, navigate, tableNo, discount, user]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

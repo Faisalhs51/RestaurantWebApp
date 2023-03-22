@@ -11,9 +11,10 @@ const AUcarousal = ({
 
   const prev = () =>
     setcurr((curr) => (curr === 0 ? slides.length - 1 : curr - 1));
-
-  const next = () =>
+  const next = () => {
     setcurr((curr) => (curr === slides.length - 1 ? 0 : curr + 1));
+  };
+
   useEffect(() => {
     if (!autoSlide) return;
     const slideInterval = setInterval(next, autoSlideInterval);

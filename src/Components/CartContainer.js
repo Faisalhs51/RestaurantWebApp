@@ -6,6 +6,7 @@ import CartItemHorizontal from "./CartItemHorizontal";
 import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
 import EmptyCart from "../img/emptyCart.svg";
+import axios from "axios";
 
 const CartContainer = () => {
   const [{ cartShow, cartItems, checkoutShow, tableNo, user }, dispatch] =
@@ -13,6 +14,7 @@ const CartContainer = () => {
   // const [showModal, setShowModal] = useState(false);
   const [flag, setFlag] = useState(1);
   const [tot, setTot] = useState(0);
+  const [displayCheckout, setDisplayCheckout] = useState(true);
 
   const showModal = () => {
     dispatch({
@@ -72,6 +74,7 @@ const CartContainer = () => {
       alert("Order placed");
 
       clearCart();
+      showCart();
     } catch (err) {
       console.log(err);
     }
@@ -83,6 +86,21 @@ const CartContainer = () => {
     }, 0);
     setTot(totalPrice);
   }, [tot, flag, cartItems]);
+
+  useEffect(() => {
+    const isOnlineCart = async () => {
+      await axios
+        .get(`http://localhost:5000/api/onlineCart/${user.email}`)
+        .then((res) => {
+          // console.log(res.status);
+          if (res.status === 204) {
+            setDisplayCheckout(false);
+          }
+        });
+    };
+
+    isOnlineCart();
+  });
 
   return (
     <div className="fixed top-0 right-0 w-full md:w-375 h-screen bg-white drop-shadow-md flex flex-col z-[101]">
@@ -156,20 +174,24 @@ const CartContainer = () => {
             Add some items to your cart
             <br />
           </p>
-          <span className="text-center text-xl text-orange-600 font-semibold">
-            OR
-          </span>
-          <button
-            className="bg-orange-600 text-white active:bg-orange-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-            type="button"
-            onClick={
-              showModal
-              // setShowModal(false);
-              // <CheckoutReview showModal1={showModal}/>
-            }
-          >
-            Check Out
-          </button>
+          {displayCheckout && (
+            <>
+              <span className="text-center text-xl text-orange-600 font-semibold">
+                OR
+              </span>
+              <button
+                className="bg-orange-600 text-white active:bg-orange-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                type="button"
+                onClick={
+                  showModal
+                  // setShowModal(false);
+                  // <CheckoutReview showModal1={showModal}/>
+                }
+              >
+                Check Out
+              </button>
+            </>
+          )}
           {/* {checkoutShow && <CheckoutReview showModal1={showModal} />} */}
           {/* {checkoutShow && <CheckoutReview />} */}
         </div>

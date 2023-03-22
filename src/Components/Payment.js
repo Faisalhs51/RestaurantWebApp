@@ -17,17 +17,29 @@ const stripePromise = loadStripe(
 
 export default function Payment() {
   const [clientSecret, setClientSecret] = useState("");
-  const [{user}] = useStateValue();
+  const [{ user, discount }] = useStateValue();
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("http://localhost:5000/api/bill/create-payment-intent", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: user.email}),
-    })
-      .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
+    const getClientSecret = async () => {
+      let body = {
+        email: user.email,
+        coin: 0,
+      };
+      if (discount) {
+        body.coin = user.coins;
+      }
+      await fetch("http://localhost:5000/api/bill/create-payment-intent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        // body: JSON.stringify({ email: user.email }),
+        body: JSON.stringify(body),
+      })
+        .then((res) => res.json())
+        .then((data) => setClientSecret(data.clientSecret));
+    };
+
+    getClientSecret();
   }, [user.email]);
 
   const appearance = {

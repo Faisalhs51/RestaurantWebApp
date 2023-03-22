@@ -30,7 +30,6 @@ const AdItemCard = ({ menudata }) => {
           String.fromCharCode(...new Uint8Array(currElm.image.data.data))
         );
         return (
-          <>
             <div
               key={currElm?._id}
               className="w-300 min-w-210 md:w-340 h-auto my-12 backdrop-blur-lg rounded-lg p-2 hover:drop-shadow-xl bg-orange-50"
@@ -95,7 +94,6 @@ const AdItemCard = ({ menudata }) => {
                 </div>
               </div>
             </div>
-          </>
         );
       })}
     </>
