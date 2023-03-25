@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
+import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useStateValue } from "../context/StateProvider";
+import { actionType } from "../context/reducer";
 
 const LoginUserForm = () => {
   const [user, setUser] = useState({});
+  const [, dispatch] = useStateValue();
   let navigate = useNavigate();
+  const { table } = useParams();
 
   function handleCallbackResponse(response) {
     // console.log("Encoded JWT ID token: " + response.credential);
@@ -24,14 +29,18 @@ const LoginUserForm = () => {
           name: user.name,
         })
         .then(() => {
-          navigate("/user");
+          navigate("/");
         });
     };
     if (user.email_verified) {
       localStorage.setItem("userToken", JSON.stringify(user));
+      dispatch({
+        type: actionType.SET_USER,
+        user: user,
+      });
       createUser();
     }
-  }, [user, navigate]);
+  }, [user, navigate]); 
 
   useEffect(() => {
     /* global google */
@@ -49,6 +58,14 @@ const LoginUserForm = () => {
 
     google.accounts.id.prompt();
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("tableno", parseInt(table));
+    dispatch({
+      type: actionType.SET_TABLENO,
+      tableNo: parseInt(table),
+    });
+  }, [table, dispatch]);
 
   return (
     <div className="bg-white px-10 py-20 rounded-3xl border-2 border-gray-200">
@@ -128,7 +145,7 @@ const LoginUserForm = () => {
         {/* Closed Google Sign in */}
         {/* Closed Sign IN */}
         <div className="mt-8 flex justify-center items-center">
-          <p className="font-medium text-base">Are you an Admin</p>
+          <p className="font-medium text-base">Are you an Admin,</p>
           <Link to="/adminlogin">
             <button className="text-red-500 text-base font-bold ml-2">
               Admin Login

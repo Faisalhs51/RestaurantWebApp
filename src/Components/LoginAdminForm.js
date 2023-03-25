@@ -36,21 +36,23 @@ const LoginAdminForm = () => {
         {/* closed pswd  */}
         {/*  */}
         {/* Sign IN */}
-        <div className="mt-8 flex flex-col gap-y-4">
-          {/* normal Sign in */}
-          <button className="  active:scale-[.75] active:duration-150 transition-all hover:scale-[1.15] py-3 rounded-xl bg-violet-500 text-white text-lg font-bold ">
-            Sign in
-          </button>
-          {/* Closed normal Sign in */}
-          {/*  */}
-        </div>
-              {/* Closed Sign IN */}
-              <br />
+        <Link to="/admin">
+          <div className="mt-8 flex flex-col gap-y-4">
+            {/* normal Sign in */}
+            <button className="active:scale-[.75] active:duration-150 transition-all hover:scale-[1.1] py-3 rounded-xl bg-violet-500 text-white text-lg font-bold ">
+              Sign in
+            </button>
+            {/* Closed normal Sign in */}
+            {/*  */}
+          </div>
+        </Link>
+        {/* Closed Sign IN */}
+        <br />
         <div className="mt-8 flex justify-center items-center">
-          <p className="font-medium text-base">Are you an User</p>
-          <Link to="/">
+          <p className="font-medium text-base">Are you an StoreKeeper,</p>
+          <Link to="/sklogin">
             <button className="text-violet-500 text-base font-bold ml-2">
-              User Login
+              StoreKeeper Login
             </button>
           </Link>
         </div>

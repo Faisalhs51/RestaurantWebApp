@@ -7,6 +7,7 @@ import {
 } from "react-icons/md";
 import { useState } from "react";
 import axios from "axios";
+import swal from "sweetalert";
 
 const AdminAddMenuItem = () => {
   const [name, setName] = useState("");
@@ -19,7 +20,7 @@ const AdminAddMenuItem = () => {
     // console.log(e.target.files);
     let size = e.target.files[0].size / 1024;
     if (size > 31) {
-      alert("Please upload Image less than 30kb");
+      swal({ text: "Please upload Image less than 30kb", icon: "error" });
     } else {
       setImage(e.target.files[0]);
     }
@@ -39,8 +40,9 @@ const AdminAddMenuItem = () => {
     axios
       .post("http://localhost:5000/api/items", formData)
       .then((res) => {
-        alert("Item added successfully");
-        window.location.reload(true);
+        swal({ text: "Item added successfully", icon: "success" }).then(() => {
+          window.location.reload(true);
+        });
         // console.log(res);
       })
       .catch((e) => {
@@ -82,39 +84,39 @@ const AdminAddMenuItem = () => {
                 <option className="bg-white">Select Category</option>
                 <option
                   className="text-base border-0 outline-none lowercase bg-white text-headingColor"
-                  value="breakfast"
-                >
-                  breakfast
-                </option>
-                <option
-                  className="text-base border-0 outline-none lowercase bg-white text-headingColor"
                   value="starter"
                 >
-                  starter
+                  Starter
                 </option>
                 <option
                   className="text-base border-0 outline-none lowercase bg-white text-headingColor"
-                  value="mughlai"
+                  value="gravy"
                 >
-                  mughlai
+                  Gravy
                 </option>
                 <option
                   className="text-base border-0 outline-none lowercase bg-white text-headingColor"
-                  value="chinese"
+                  value="fish"
                 >
-                  chinese
+                  Fish
                 </option>
                 <option
                   className="text-base border-0 outline-none lowercase bg-white text-headingColor"
-                  value="dessert"
+                  value="mutton"
                 >
-                  dessert
+                  Mutton
                 </option>
                 <option
                   className="text-base border-0 outline-none lowercase bg-white text-headingColor"
-                  value="drinks"
+                  value="rice"
                 >
-                  drinks
+                  Rice
+                </option>
+                <option
+                  className="text-base border-0 outline-none lowercase bg-white text-headingColor"
+                  value="icecream"
+                >
+                  Ice Cream
                 </option>
               </select>
             </div>

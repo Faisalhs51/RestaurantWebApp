@@ -6,13 +6,15 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import { useStateValue } from "../context/StateProvider";
+import { actionType } from "../context/reducer";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import swal from "sweetalert";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
-  const [{ user, discount, tableNo }] = useStateValue();
+  const [{ user }, dispatch] = useStateValue();
   let navigate = useNavigate();
 
   const [email, setEmail] = useState(user.email);
@@ -21,13 +23,12 @@ export default function CheckoutForm() {
 
   useEffect(() => {
     const successCallback = async () => {
+      let getcoin = localStorage.getItem("coin");
       let body = {
         email: user.email,
-        coin: 0,
+        coin: getcoin,
       };
-      if (discount) {
-        body.coin = user.coins;
-      }
+      // console.log(body);
       await axios
         .post(`http://localhost:5000/api/bill//billing/sendmail`, body)
         .then(async () => {
@@ -52,11 +53,18 @@ export default function CheckoutForm() {
         case "succeeded":
           setMessage("Payment succeeded!");
           successCallback();
-          alert(`Payment done successfully!!!`);
-          localStorage.clear();
-          //   localStorage.setItem("tableno", tableno);
-          let redirect = `/${tableNo}`;
-          navigate(redirect);
+          swal({ text: `Payment done successfully!!!`, icon: "success" }).then(
+            () => {
+              localStorage.clear();
+              dispatch({
+                type: actionType.SET_USER,
+                user: undefined,
+              });
+              //   localStorage.setItem("tableno", tableno);
+              let redirect = `/`;
+              navigate(redirect);
+            }
+          );
           break;
         case "processing":
           setMessage("Your payment is processing.");
@@ -68,8 +76,8 @@ export default function CheckoutForm() {
           setMessage("Something went wrong.");
           break;
       }
-    });
-  }, [stripe, navigate, tableNo, discount, user]);
+    }); // eslint-disable-next-line
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

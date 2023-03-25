@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
 import axios from "axios";
+import swal from "sweetalert";
 
 const MItemCard = ({ menudata, isAdmin }) => {
   const [items, setItems] = useState([]);
@@ -14,8 +15,11 @@ const MItemCard = ({ menudata, isAdmin }) => {
     await axios
       .delete(`http://localhost:5000/api/specialItems/${id}`)
       .then((res) => {
-        alert("Special items list updated!!");
-        window.location.reload(true);
+        swal({ text: "Special items list updated!!", icon: "success" }).then(
+          () => {
+            window.location.reload(true);
+          }
+        );
       })
       .catch((err) => {
         console.log(err);

@@ -54,21 +54,6 @@ const AdMenuSection = () => {
         </div>
               {/*  */}
               {/*  */}
-        <div className="w-full flex items-center justify-start lg:justify-center gap-8 py-6" onClick={() => filterItem("breakfast")}>
-          <div className="group bg-card w-24 min-w-[94px] h-28 cursor-pointer rounded-lg drop-shadow-xl flex flex-col gap-3 items-center justify-center hover:bg-red-500 duration-150 transition-all ease-in-out ">
-            <div className="w-10 h-10 rounded-full bg-red-500 group-hover:bg-card flex items-center justify-center">
-              <MdFastfood className="text-card group-hover:text-textColor text-lg" />
-            </div>
-            <p
-              className="text-sm text-textColor group-hover:text-white"
-              
-            >
-              Breakfast
-            </p>
-          </div>
-        </div>
-              {/*  */}
-              {/*  */}
         <div className="w-full flex items-center justify-start lg:justify-center gap-8 py-6" onClick={() => filterItem("starter")}>
           <div className="group bg-card w-24 min-w-[94px] h-28 cursor-pointer rounded-lg drop-shadow-xl flex flex-col gap-3 items-center justify-center hover:bg-red-500 duration-150 transition-all ease-in-out ">
             <div className="w-10 h-10 rounded-full bg-red-500 group-hover:bg-card flex items-center justify-center">
@@ -83,9 +68,8 @@ const AdMenuSection = () => {
           </div>
         </div>
               {/*  */}
-              
               {/*  */}
-        <div className="w-full flex items-center justify-start lg:justify-center gap-8 py-6" onClick={() => filterItem("mughlai")}>
+        <div className="w-full flex items-center justify-start lg:justify-center gap-8 py-6" onClick={() => filterItem("gravy")}>
           <div className="group bg-card w-24 min-w-[94px] h-28 cursor-pointer rounded-lg drop-shadow-xl flex flex-col gap-3 items-center justify-center hover:bg-red-500 duration-150 transition-all ease-in-out ">
             <div className="w-10 h-10 rounded-full bg-red-500 group-hover:bg-card flex items-center justify-center">
               <MdFastfood className="text-card group-hover:text-textColor text-lg" />
@@ -94,13 +78,29 @@ const AdMenuSection = () => {
               className="text-sm text-textColor group-hover:text-white"
               
             >
-              Mughlai
+              Gravy
+            </p>
+          </div>
+        </div>
+              {/*  */}
+              
+              {/*  */}
+        <div className="w-full flex items-center justify-start lg:justify-center gap-8 py-6" onClick={() => filterItem("fish")}>
+          <div className="group bg-card w-24 min-w-[94px] h-28 cursor-pointer rounded-lg drop-shadow-xl flex flex-col gap-3 items-center justify-center hover:bg-red-500 duration-150 transition-all ease-in-out ">
+            <div className="w-10 h-10 rounded-full bg-red-500 group-hover:bg-card flex items-center justify-center">
+              <MdFastfood className="text-card group-hover:text-textColor text-lg" />
+            </div>
+            <p
+              className="text-sm text-textColor group-hover:text-white"
+              
+            >
+              Fish
             </p>
           </div>
         </div>
               {/*  */}
               {/*  */}
-        <div className="w-full flex items-center justify-start lg:justify-center gap-4 md:gap-8 py-6" onClick={() => filterItem("chinese")}>
+        <div className="w-full flex items-center justify-start lg:justify-center gap-4 md:gap-8 py-6" onClick={() => filterItem("mutton")}>
           <div className="group bg-card w-24 min-w-[94px] h-28 cursor-pointer rounded-lg drop-shadow-xl flex flex-col gap-3 items-center justify-center hover:bg-red-500 duration-150 transition-all ease-in-out ">
             <div className="w-10 h-10 rounded-full bg-red-500 group-hover:bg-card flex items-center justify-center">
               <MdFastfood className="text-card group-hover:text-textColor text-lg" />
@@ -109,13 +109,13 @@ const AdMenuSection = () => {
               className="text-sm text-textColor group-hover:text-white"
               
             >
-              Chinese
+              Mutton
             </p>
           </div>
         </div>
               {/*  */}
               {/*  */}
-        <div className="w-full flex items-center justify-start lg:justify-center gap-8 py-6" onClick={() => filterItem("dessert")}>
+        <div className="w-full flex items-center justify-start lg:justify-center gap-8 py-6" onClick={() => filterItem("rice")}>
           <div className="group bg-card w-24 min-w-[94px] h-28 cursor-pointer rounded-lg drop-shadow-xl flex flex-col gap-3 items-center justify-center hover:bg-red-500 duration-150 transition-all ease-in-out ">
             <div className="w-10 h-10 rounded-full bg-red-500 group-hover:bg-card flex items-center justify-center">
               <MdFastfood className="text-card group-hover:text-textColor text-lg" />
@@ -124,13 +124,13 @@ const AdMenuSection = () => {
               className="text-sm text-textColor group-hover:text-white"
               
             >
-              Dessert
+              Rice
             </p>
           </div>
         </div>
               {/*  */}
               {/*  */}
-        <div className="w-full flex items-center justify-start lg:justify-center gap-8 py-6" onClick={() => filterItem("drinks")}>
+        <div className="w-full flex items-center justify-start lg:justify-center gap-8 py-6" onClick={() => filterItem("icecream")}>
           <div className="group bg-card w-24 min-w-[94px] h-28 cursor-pointer rounded-lg drop-shadow-xl flex flex-col gap-3 items-center justify-center hover:bg-red-500 duration-150 transition-all ease-in-out ">
             <div className="w-10 h-10 rounded-full bg-red-500 group-hover:bg-card flex items-center justify-center">
               <MdFastfood className="text-card group-hover:text-textColor text-lg" />
@@ -139,7 +139,7 @@ const AdMenuSection = () => {
               className="text-sm text-textColor group-hover:text-white"
               
             >
-              Drinks
+              Ice Cream
             </p>
           </div>
         </div>

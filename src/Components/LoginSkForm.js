@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const LoginSkForm = () => {
   return (
-    <div className="bg-white px-10 py-20 rounded-3xl border-2 border-gray-200">
+    <div className="bg-white px-10 py-20 border-2 border-gray-200">
       <h1 className="text-5xl font-semibold">
         Hotel StoreKeeper, Welcome to your Kitchen :P
       </h1>
@@ -36,19 +36,21 @@ const LoginSkForm = () => {
         {/* closed pswd  */}
         {/*  */}
         {/* Sign IN */}
-        <div className="mt-8 flex flex-col gap-y-4">
-          {/* normal Sign in */}
-          <button className="  active:scale-[.75] active:duration-150 transition-all hover:scale-[1.15] py-3 rounded-xl bg-emerald-500 text-white text-lg font-bold ">
-            Sign in
-          </button>
-          {/* Closed normal Sign in */}
-          {/*  */}
-        </div>
+        <Link to="/store">
+          <div className="mt-8 flex flex-col gap-y-4">
+            {/* normal Sign in */}
+            <button className="  active:scale-[.75] active:duration-150 transition-all hover:scale-[1.1] py-3 rounded-xl bg-emerald-500 text-white text-lg font-bold ">
+              Sign in
+            </button>
+            {/* Closed normal Sign in */}
+            {/*  */}
+          </div>
+        </Link>
         {/* Closed Sign IN */}
         <br />
         <div className="mt-8 flex justify-center items-center">
-          <p className="font-medium text-base">Are you an User</p>
-          <Link to="/">
+          <p className="font-medium text-base">Are you an User,</p>
+          <Link to="/user">
             <button className="text-emerald-500 text-base font-bold ml-2">
               User Login
             </button>

@@ -4,7 +4,7 @@ import LoginSkForm from "./LoginSkForm";
 const LoginSKSign1 = () => {
   return (
     <>
-      <div className="flex w-full h-screen">
+      <div className="flex w-screen h-screen">
         {/* Form */}
         <div className="w-full lg:w-1/2 flex items-center justify-center ">
           <LoginSkForm />

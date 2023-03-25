@@ -30,6 +30,8 @@ export default function CheckoutReview() {
   };
 
   const goCheckout = () => {
+    if (isCheck) localStorage.setItem("coin", user.coins);
+    else localStorage.setItem("coin", 0);
     navigate("/payment");
   };
 
@@ -58,7 +60,7 @@ export default function CheckoutReview() {
     getTotal();
 
     fetchData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
@@ -110,6 +112,14 @@ export default function CheckoutReview() {
                 <CheckoutItemList />
                 <CheckoutItemList /> */}
                 {/* Closing Passing List of Items that is ordered */}
+                <div className="grid grid-cols-4 md:grid-cols-5 pt-2 pl-2">
+                  <div className="col-span-2 md:col-span-3 capitalize text-center">
+                    Service Charge
+                  </div>
+                  <div className="text-center md:text-right pr-3"></div>
+                  <div className="text-center md:text-right pr-5">100</div>
+                  <hr className="w-48 md:w-225 h-1 mt-1 ml-5 bg-slate-300 border-0 rounded "></hr>
+                </div>
               </div>
               <div className="grid grid-cols-4 md:grid-cols-5 pt-2 pl-2 pb-2 text-headingColor font-extrabold bg-gray-400 rounded-md">
                 <div className="col-span-2 md:col-span-3 text-center">
@@ -117,7 +127,18 @@ export default function CheckoutReview() {
                 </div>
                 <div className="text-center md:text-right pr-3"></div>
                 <div className="text-center md:text-right pr-5">
-                  &#8377; {total}
+                  {isCheck ? (
+                    <>
+                      {" "}
+                      {total + 100 - coins / 10 <= 100 ? (
+                        <>100</>
+                      ) : (
+                        <>&#8377; {total + 100 - coins / 10}</>
+                      )}
+                    </>
+                  ) : (
+                    <>&#8377; {total + 100}</>
+                  )}
                 </div>
               </div>
               {user.coins > 500 && (

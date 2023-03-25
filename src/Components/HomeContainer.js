@@ -1,4 +1,5 @@
 import React from "react";
+import { HashLink } from "react-router-hash-link";
 import Delivery from "../img/delivery.png";
 // import HeroBg from "../img/heroBg.png";
 import homepgimg1 from "../img/homepgimg1.jpg";
@@ -35,12 +36,15 @@ const HomeContainer = () => {
           restaurant. From classic favorites to innovative creations, our menu
           offers something for everyone. Come join us for a memorable meal."
         </p>
-        <button
-          type="button"
-          className="bg-gradient-to-br from-orange-400 to-orange-500 w-full px-4 py-2 rounded-lg hover:shadow-lg transition-all ease-in-out duration-100 md:w-auto"
-        >
-          Order Now
-        </button>
+        <HashLink to="#Menu">
+          <button
+            type="button"
+            className="bg-gradient-to-br from-orange-400 to-orange-500 w-full px-4 py-2 rounded-lg hover:shadow-lg transition-all ease-in-out duration-100 md:w-auto"
+            href=""
+          >
+            Order Now
+          </button>
+        </HashLink>
       </div>
       {/*  */}
       {/* Column 2 */}
@@ -51,7 +55,6 @@ const HomeContainer = () => {
           className="ml-auto h-420 w-full md:h-[870px] md:w-auto rounded-t-[100px]"
         />
         {/* HeroBg */}
-        
       </div>
     </section>
   );

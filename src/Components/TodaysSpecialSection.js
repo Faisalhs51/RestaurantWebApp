@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import MItemCard from "./MItemCard";
 
-const TodaysSpecialSection = ({isAdmin}) => {
+const TodaysSpecialSection = ({ isAdmin }) => {
   const [tsdata, setTsdata] = useState([]);
   useEffect(() => {
     axios
@@ -29,7 +29,7 @@ const TodaysSpecialSection = ({isAdmin}) => {
       </section>
       {/*  */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14">
-        <MItemCard menudata={tsdata} isAdmin={isAdmin}/>
+        <MItemCard menudata={tsdata} isAdmin={isAdmin} />
       </div>
     </>
   );

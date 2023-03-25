@@ -6,6 +6,7 @@ import CartItemHorizontal from "./CartItemHorizontal";
 import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
 import EmptyCart from "../img/emptyCart.svg";
+import swal from "sweetalert";
 import axios from "axios";
 
 const CartContainer = () => {
@@ -71,7 +72,34 @@ const CartContainer = () => {
       await response.json();
       // console.log("faisal");
       // console.log(json);
-      alert("Order placed");
+
+      let max = {};
+      for (let i of cartItems) {
+        // console.log(i.est);
+        if (i.category in max) {
+          // console.log(max[i.category]);
+          if (max[i.category] > i.est) {
+            max[i.category] = i.est;
+            // console.log(i.est);
+          }
+        } else {
+          max[i.category] = i.est;
+          // console.log(i.category in max);
+          // console.log(max[i.category]);
+        }
+      }
+      let maxEST = 0;
+      for (let index in max) {
+        if (max[index] > maxEST) maxEST = max[index];
+      }
+      // console.log(maxEST);
+
+      // swal(`Order placed!!! Your Order will be ready within ${maxEST}min`);
+      swal(
+        "Order Placed!",
+        `Your Order will be ready within ${maxEST}mins`,
+        "success"
+      );
 
       clearCart();
       showCart();

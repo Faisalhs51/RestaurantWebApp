@@ -15,3 +15,12 @@ export const fetchUser = () => {
 
   return userInfo;
 };
+
+export const fetchTableNo = () => {
+  const tableno =
+    localStorage.getItem("tableno") !== "undefined"
+      ? localStorage.getItem("tableno")
+      : 0;
+
+  return tableno;
+};

@@ -3,6 +3,7 @@ import { MdFastfood, MdAvTimer, MdAttachMoney } from "react-icons/md";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 const AdEditItem = () => {
   let navigate = useNavigate();
 
@@ -36,7 +37,7 @@ const AdEditItem = () => {
       data: data,
     })
       .then((res) => {
-        alert("Item Updated successfully");
+        swal("Item Updated successfully");
         // console.log(res);
         localStorage.removeItem("editItem");
         navigate("/admin");
@@ -82,39 +83,39 @@ const AdEditItem = () => {
                 <option className="bg-white">Select Category</option>
                 <option
                   className="text-base border-0 outline-none lowercase bg-white text-headingColor"
-                  value="breakfast"
-                >
-                  breakfast
-                </option>
-                <option
-                  className="text-base border-0 outline-none lowercase bg-white text-headingColor"
                   value="starter"
                 >
                   starter
                 </option>
                 <option
                   className="text-base border-0 outline-none lowercase bg-white text-headingColor"
-                  value="mughlai"
+                  value="gravy"
                 >
-                  mughlai
+                  gravy
                 </option>
                 <option
                   className="text-base border-0 outline-none lowercase bg-white text-headingColor"
-                  value="chinese"
+                  value="fish"
                 >
-                  chinese
+                  fish
                 </option>
                 <option
                   className="text-base border-0 outline-none lowercase bg-white text-headingColor"
-                  value="dessert"
+                  value="mutton"
                 >
-                  dessert
+                  mutton
                 </option>
                 <option
                   className="text-base border-0 outline-none lowercase bg-white text-headingColor"
-                  value="drinks"
+                  value="rice"
                 >
-                  drinks
+                  rice
+                </option>
+                <option
+                  className="text-base border-0 outline-none lowercase bg-white text-headingColor"
+                  value="icecream"
+                >
+                  ice cream
                 </option>
               </select>
             </div>

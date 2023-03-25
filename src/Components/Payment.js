@@ -40,7 +40,7 @@ export default function Payment() {
     };
 
     getClientSecret();
-  }, [user.email]);
+  }, [user.email, discount, user.coins]);
 
   const appearance = {
     theme: "flat",
@@ -55,12 +55,16 @@ export default function Payment() {
   };
 
   return (
-    <div className="App-checkout">
-      {clientSecret && (
-        <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm />
-        </Elements>
+    <>
+      {user && (
+        <div className="App-checkout">
+          {clientSecret && (
+            <Elements options={options} stripe={stripePromise}>
+              <CheckoutForm />
+            </Elements>
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 }

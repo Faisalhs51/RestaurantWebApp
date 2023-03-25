@@ -21,8 +21,8 @@ function App() {
           <Routes>
             {/* <Route path="/*" element={<LoginRegisterPage />} />
             <Route path="/user" element={<MainContainer />} /> */}
-            <Route path="/user" element={<LoginRegisterPage />} />
-            <Route path="/:table" element={<MainContainer />} />
+            <Route path="/user/:table" element={<LoginRegisterPage />} />
+            <Route path="/" element={<MainContainer />} />
             {/* <Route path="/createItem" element={<CreateContainer />} /> */}
             <Route path="/admin" element={<AdminContainer />} />
             <Route path="/adminlogin" element={<LoginAdminSign1 />} />

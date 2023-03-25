@@ -8,6 +8,7 @@ import {
 } from "react-icons/ai";
 import axios from "axios";
 import { useStateValue } from "../context/StateProvider";
+import swal from "sweetalert";
 
 const ContactUs = () => {
   const [{ user }] = useStateValue();
@@ -32,7 +33,7 @@ const ContactUs = () => {
     axios
       .post("http://localhost:5000/api/feedback/createFeed", data)
       .then((res) => {
-        alert("Thanks for giving feedback!");
+        swal({ text: "Thanks for giving feedback!", icon: "success" });
         setDesc("");
         // console.log(res);
       })
