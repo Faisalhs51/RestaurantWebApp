@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Header,
   HomeContainer,
@@ -8,14 +8,16 @@ import {
   Footer,
   ContactUs,
   AUaboutus,
+  FaQ,
 } from "./";
 import CheckoutReview from "./CheckoutReview";
 import { useStateValue } from "../context/StateProvider";
+import TqrStart from "./TqrStart";
 // import { useParams } from "react-router-dom";
-import { actionType } from "../context/reducer";
+// import { actionType } from "../context/reducer";
 
 const MainContainer = () => {
-  const [{ cartShow, checkoutShow, user }, dispatch] = useStateValue();
+  const [{ cartShow, checkoutShow, user }] = useStateValue();
 
   // const { table } = useParams();
 
@@ -46,11 +48,16 @@ const MainContainer = () => {
             {checkoutShow && <CheckoutReview />}
             <AUaboutus />
             <ContactUs />
+            <br></br>
+            <FaQ />
+            <br></br>
             <Footer />
           </div>
         </>
       ) : (
-        ""
+        <>
+          <TqrStart />
+        </>
       )}
     </>
   );

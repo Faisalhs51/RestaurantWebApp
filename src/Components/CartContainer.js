@@ -149,7 +149,7 @@ const CartContainer = () => {
       {/* Components Section */}
       {cartItems && cartItems.length > 0 ? (
         <div className="w-full h-full bg-cartBg rounded-t-[2rem] flex flex-col">
-          <div className="w-full h-[53%] gap-2 md:h-[60%] md:gap-4 px-6 py-10 flex flex-col  overflow-y-scroll scrollbar-none ">
+          <div className="w-full h-[70%] gap-2 md:h-[70%] md:gap-4 px-6 py-10 flex flex-col  overflow-y-scroll scrollbar-none ">
             {/* overflow-y-scroll */}
             {/* <CartItemHorizontal />
           <CartItemHorizontal /> */}
@@ -165,23 +165,24 @@ const CartContainer = () => {
               ))}
           </div>
           {/* Bottom Calculation CheckOut */}
-          <div className="w-full flex-1 bg-cartTotal rounded-t-[2rem] flex flex-col items-center gap-2 md:gap-4 px-8 py-2 mt-5">
+          <div className="w-full flex-1 bg-cartTotal rounded-t-[2rem] flex flex-col items-center gap-2 md:gap-4 px-8 py-2 ">
             {/*  */}
-            <div className="w-full flex items-center justify-between">
+            {/* mt-24 */}
+            {/* <div className="w-full flex items-center justify-between">
               <p className="text-gray-400 text-lg">Sub Total</p>
               <p className="text-gray-400 text-lg">Rs. {tot}</p>
-            </div>
+            </div> */}
             {/*  */}
-            <div className="w-full flex items-center justify-between">
+            {/* <div className="w-full flex items-center justify-between">
               <p className="text-gray-400 text-lg">Service Charge</p>
               <p className="text-gray-400 text-lg">Rs. 100</p>
-            </div>
+            </div> */}
             {/*  */}
-            <div className="w-full border-b border-gray-600 my-2"></div>
+            {/* <div className="w-full border-b border-gray-600 my-2"></div> */}
             {/*  */}
             <div className="w-full flex items-center justify-between">
               <p className="text-gray-400 text-lg">Total</p>
-              <p className="text-gray-400 text-lg">Rs. {tot + 100}</p>
+              <p className="text-gray-400 text-lg">&#8377; {tot}</p>
             </div>
             {/*  */}
             <motion.button

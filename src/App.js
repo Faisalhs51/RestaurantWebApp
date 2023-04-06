@@ -1,4 +1,3 @@
-import "./App.css";
 import {
   MainContainer,
   LoginRegisterPage,
@@ -11,6 +10,8 @@ import { AnimatePresence } from "framer-motion";
 import AdEditItem from "./Components/AdEditItem";
 import Payment from "./Components/Payment";
 import LoginSKSign1 from "./Components/LoginSKSign1";
+import AdCash from "./Components/AdCash";
+import FBfeedback from "./Components/FBfeedback";
 
 function App() {
   return (
@@ -30,6 +31,8 @@ function App() {
             <Route path="/updateitem" element={<AdEditItem />} />
             <Route path="/store" element={<SKstorekeeperModule />} />
             <Route path="/payment" element={<Payment />} />
+            <Route path="/feedback" element={<FBfeedback />} />
+            <Route path="/pay-via-cash" element={<AdCash />} />
           </Routes>
         </main>
       </div>

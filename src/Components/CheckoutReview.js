@@ -8,7 +8,7 @@ import axios from "axios";
 
 export default function CheckoutReview() {
   const [{ checkoutShow, user }, dispatch] = useStateValue();
-  const [coins, setCoins] = useState(0);
+  // const [coins, setCoins] = useState(0);
   const [total, setTotal] = useState(0);
   const [isCheck, setIsCheck] = useState(false);
   //   const [showModal, setShowModal] = React.useState(showModal1);
@@ -36,17 +36,17 @@ export default function CheckoutReview() {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      await axios
-        .get(`http://localhost:5000/api/customer/getUser/${user.email}`)
-        .then((res) => {
-          dispatch({
-            type: actionType.SET_USER,
-            user: { ...user, ...{ coins: res.data.coins } },
-          });
-          setCoins(res.data.coins);
-        });
-    };
+    // const fetchData = async () => {
+    //   await axios
+    //     .get(`http://localhost:5000/api/customer/getUser/${user.email}`)
+    //     .then((res) => {
+    //       dispatch({
+    //         type: actionType.SET_USER,
+    //         user: { ...user, ...{ coins: res.data.coins } },
+    //       });
+    //       setCoins(res.data.coins);
+    //     });
+    // };
 
     const getTotal = async () => {
       await axios
@@ -59,13 +59,13 @@ export default function CheckoutReview() {
 
     getTotal();
 
-    fetchData();
+    // fetchData();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
-      <div className="justify-center items-center flex overflow-x-hidden overflow-y-scroll fixed inset-0 z-50 outline-none focus:outline-none">
-        <div className="relative w-340 my-6 mx-auto md:w-508 lg:w-656 h-auto">
+      <div className="justify-center items-center flex overflow-x-hidden overflow-y-scroll fixed inset-0 z-50 scrollbar-none outline-none focus:outline-none h-685">
+        <div className="relative w-340 my-6 mx-auto md:w-508 lg:w-656 h-510">
           {/*content*/}
           <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
             {/*header*/}
@@ -130,10 +130,10 @@ export default function CheckoutReview() {
                   {isCheck ? (
                     <>
                       {" "}
-                      {total + 100 - coins / 10 <= 100 ? (
+                      {total + 100 - user.coins / 10 <= 100 ? (
                         <>100</>
                       ) : (
-                        <>&#8377; {total + 100 - coins / 10}</>
+                        <>&#8377; {total + 100 - user.coins / 10}</>
                       )}
                     </>
                   ) : (
@@ -142,13 +142,16 @@ export default function CheckoutReview() {
                 </div>
               </div>
               {user.coins > 500 && (
-                <div>
+                <div className="mt-4 text-xl">
                   <input
                     type="checkbox"
                     checked={isCheck}
                     onChange={handleToggle}
+                    className="w-4 h-4"
                   ></input>
-                  <label>Discount</label>
+                  <label className="pl-2 font-bold text-textColor">
+                    Use Dream Coins
+                  </label>
                 </div>
               )}
             </div>

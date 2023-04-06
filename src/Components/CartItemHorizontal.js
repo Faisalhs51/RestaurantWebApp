@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-// import img111 from "../img/c7.png";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { actionType } from "../context/reducer";
 import { useStateValue } from "../context/StateProvider";
@@ -48,6 +47,7 @@ const CartItemHorizontal = ({ item, setFlag, flag }) => {
   };
 
   useEffect(() => {
+    // eslint-disable-next-line
     items = cartItems;
   }, [qty, items]);
 

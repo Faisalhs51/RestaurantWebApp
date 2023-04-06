@@ -40,7 +40,7 @@ const SKcart = () => {
                 .post(
                   `http://localhost:5000/api/onlineCart/showItem/${change[i].email}`
                 )
-                .then(async (res) => {
+                .then(async () => {
                   await axios.post(
                     `http://localhost:5000/api/storekeeper/${change[i]._id}`
                   );
@@ -58,7 +58,7 @@ const SKcart = () => {
         return (
           element.show && (
             <div key={i}>
-              <div className="h-510 w-300 lg:w-460 md:w-340 border-2 border-slate-400 rounded-xl bg-slate-200 overflow-auto scrollbar-none text-slate-600 mt-5">
+              <div className="h-510 w-300 lg:w-auto md:w-340 border-2 border-slate-400 rounded-xl bg-slate-200 overflow-auto scrollbar-none text-slate-600 mt-5">
                 <div className="font-bold text-xl text-center pt-2 font-serif">
                   Table Number :{" "}
                   <span className="font-mono text-slate-900">

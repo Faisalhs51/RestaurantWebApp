@@ -32,6 +32,7 @@ export default function CheckoutForm() {
       await axios
         .post(`http://localhost:5000/api/bill//billing/sendmail`, body)
         .then(async () => {
+          // console.log(res.data)
           await axios.delete(
             `http://localhost:5000/api/onlineCart/${user.email}`
           );
@@ -76,8 +77,8 @@ export default function CheckoutForm() {
           setMessage("Something went wrong.");
           break;
       }
-    }); // eslint-disable-next-line
-  }, []);
+    });
+  }, [dispatch, navigate, stripe, user.email]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

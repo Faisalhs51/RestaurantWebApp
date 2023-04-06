@@ -1,9 +1,7 @@
 import React from "react";
 import { HashLink } from "react-router-hash-link";
 import Delivery from "../img/delivery.png";
-// import HeroBg from "../img/heroBg.png";
 import homepgimg1 from "../img/homepgimg1.jpg";
-// import I1 from "../img/i1.png";
 
 const HomeContainer = () => {
   return (

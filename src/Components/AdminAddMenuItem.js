@@ -160,7 +160,7 @@ const AdminAddMenuItem = () => {
               <div className="w-full py-2 border-b border-gray-300 flex items-center gap-2">
                 <MdAvTimer className="text-gray-700 text-2xl" />
                 <input
-                  type="text"
+                  type="number"
                   className="w-full h-full text-lg bg-transparent outline-none border-none placeholder:text-gray-400 text-textColor"
                   required
                   placeholder="Waiting Time"
@@ -174,7 +174,7 @@ const AdminAddMenuItem = () => {
               <div className="w-full py-2 border-b border-gray-300 flex items-center gap-2">
                 <MdAttachMoney className="text-gray-700 text-2xl" />
                 <input
-                  type="text"
+                  type="number"
                   className="w-full h-full text-lg bg-transparent outline-none border-none placeholder:text-gray-400 text-textColor"
                   required
                   placeholder="Price"
